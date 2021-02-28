@@ -1,5 +1,6 @@
 <?php   
-include 'dataRetriever.php';
+include 'DataRetriever.php';
+include 'DataAdapterFactory.php';
 
 class ApiHandler {
     // here you define the url data source according to the city
@@ -12,7 +13,10 @@ class ApiHandler {
 
         $data = $dataRetriever->getRawData();
 
-        echo $data;
-    }
+        $dataAdapterFactory = new DataAdapterFactory();
+        $adapter = $dataAdapterFactory->getAdapter($city);
+        $adapter->adapt($data);
+        }
+
 }
 

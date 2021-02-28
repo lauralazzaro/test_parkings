@@ -1,5 +1,5 @@
 <?php
-include 'apiHandler.php';
+include 'ApiHandler.php';
 
 $api = new ApiHandler();
 
