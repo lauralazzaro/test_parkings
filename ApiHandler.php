@@ -15,7 +15,10 @@ class ApiHandler {
 
         $dataAdapterFactory = new DataAdapterFactory();
         $adapter = $dataAdapterFactory->getAdapter($city);
-        $adapter->adapt($data);
+        $adaptedResponse = $adapter->adapt($data);
+
+        $jsonResponse = json_encode($adaptedResponse,  JSON_UNESCAPED_UNICODE |JSON_PRETTY_PRINT);
+        echo $jsonResponse;
         }
 
 }
