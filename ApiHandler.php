@@ -22,7 +22,6 @@ class ApiHandler
 
     public function getAllDataByCity($city)
     {
-
         $adaptedResponse = $this->getAllData($city);
 
         $jsonResponse = json_encode($adaptedResponse, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
@@ -45,7 +44,6 @@ class ApiHandler
                 $listOfCloseParking[] = $parking;
             }
         }
-
         $jsonResponse = json_encode($listOfCloseParking, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         echo $jsonResponse;
     }
@@ -55,16 +53,22 @@ class ApiHandler
      * @param $city
      * @param $lat
      * @param $lon
+     * @param $status
      *
      * return parking if available spot
      */
-    public function getParkingByStatus($city, $lat, $lon)
+    public function getParkingByStatus($city, $lat, $lon, $status)
     {
         $adaptedResponse = $this->getAllData($city);
 
-        // filter data
+        $listOfCloseParking = array();
+        foreach ($adaptedResponse as $parking) {
+            if($this->distance($lat, $lon,$parking->latitude, $parking->longitude) <= 3 && $parking->status === strtoupper($status)){
+                $listOfCloseParking[] = $parking;
+            }
+        }
 
-        $jsonResponse = json_encode($adaptedResponse, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $jsonResponse = json_encode($listOfCloseParking, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         echo $jsonResponse;
     }
 
