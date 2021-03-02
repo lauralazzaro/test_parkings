@@ -1,7 +1,7 @@
 <?php
 include 'Parking.php';
 
-class Adapter
+class OpenGisAdapter
 {
 
     public function adapt($data)

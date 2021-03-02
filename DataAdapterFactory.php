@@ -1,5 +1,5 @@
 <?php
-include 'Adapter.php';
+include 'OpenGisAdapter.php';
 
 class DataAdapterFactory
 {
@@ -8,10 +8,10 @@ class DataAdapterFactory
      *
      * @param string city
      *
-     * @return array | string Adapter
+     * @return array | string OpenGisAdapter
      */
     public function getAdapter($city){
-        return new Adapter();
+        return new OpenGisAdapter();
     }
 
 }
