@@ -1,7 +1,7 @@
 <?php
 include 'Parking.php';
 
-class BordeauxAdapter
+class Adapter
 {
 
     public function adapt($data)
@@ -25,7 +25,7 @@ class BordeauxAdapter
             $parkingToAdd->longitude = floatval($posArray[1]);
             $parkingToAdd->address = (string)$parking->ST_PARK_P->ADRESSE;
 
-            $allParking[] = ($parkingToAdd);
+            $allParking[] = $parkingToAdd;
         }
 
         return $allParking;

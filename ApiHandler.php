@@ -9,6 +9,12 @@ class ApiHandler
 
     // for each new city add new url
 
+    /**
+     * @param string $city city where to search the parking
+     *
+     * @return array it retrieve all parking from a city
+     */
+
     private function getAllData($city)
     {
         $dataRetriever = new DataRetriever(self::URL_BY_CITY[$city]);
@@ -20,6 +26,11 @@ class ApiHandler
         return $adaptedResponse = $adapter->adapt($data);
     }
 
+    /**
+     * @param string $city
+     *
+     *
+     */
     public function getAllDataByCity($city)
     {
         $adaptedResponse = $this->getAllData($city);
@@ -29,11 +40,11 @@ class ApiHandler
     }
 
     /**
-     * @param $city
-     * @param $lat
-     * @param $lon
+     * @param string $city used for this test, in real case I would have accessed the position or calculate lat and lon based on selected address
+     * @param float $lat latitude coordinates
+     * @param float $lon longitude coordinates
      *
-     * return all parking less than 3km distance
+     * return all parking less than a selected distance, in this case I have hardcoded 3km but should be a variable to be specified by user
      */
     public function getClosestParking($city, $lat, $lon)
     {
@@ -50,12 +61,12 @@ class ApiHandler
 
 
     /**
-     * @param $city
-     * @param $lat
-     * @param $lon
-     * @param $status
+     * @param string $city used for this test, in real case I would have accessed the position or calculate lat and lon based on selected address
+     * @param float $lat latitude coordinates
+     * @param float $lon longitude coordinates
+     * @param string $status chosen status to look for
      *
-     * return parking if available spot
+     * return parking with selected status
      */
     public function getParkingByStatus($city, $lat, $lon, $status)
     {
@@ -71,6 +82,16 @@ class ApiHandler
         $jsonResponse = json_encode($listOfCloseParking, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         echo $jsonResponse;
     }
+
+    /**
+     * @param float $lat1 latitude of the user
+     * @param float $lon1 longitude of the user
+     * @param float $lat2 latitude of the parking
+     * @param float $lon2 longitude of the parking
+     *
+     * @return int|string distance from user position to the parking
+     *
+     */
 
     function distance($lat1, $lon1, $lat2, $lon2)
     {

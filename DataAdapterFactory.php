@@ -1,10 +1,16 @@
 <?php
-include 'BordeauxAdapter.php';
+include 'Adapter.php';
 
 class DataAdapterFactory
 {
-    public function getAdapter($city){
-        return $bordeaux = new BordeauxAdapter();
+    /**
+     *
+     * @return Adapter
+     *
+     * in this case is set to search parking in bordeaux
+     */
+    public function getAdapter(){
+        return new Adapter();
     }
 
 }
