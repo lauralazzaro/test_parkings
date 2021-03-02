@@ -4,12 +4,13 @@ include 'Adapter.php';
 class DataAdapterFactory
 {
     /**
+     * return the adapted data in an array (chosen fields only)
      *
-     * @return Adapter
+     * @param string city
      *
-     * in this case is set to search parking in bordeaux
+     * @return array | string Adapter
      */
-    public function getAdapter(){
+    public function getAdapter($city){
         return new Adapter();
     }
 

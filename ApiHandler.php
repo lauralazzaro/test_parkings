@@ -10,9 +10,11 @@ class ApiHandler
     // for each new city add new url
 
     /**
+     * connect to data source to retrieve all parking in the original format
+     *
      * @param string $city city where to search the parking
      *
-     * @return array it retrieve all parking from a city
+     * @return array
      */
 
     private function getAllData($city)
@@ -27,9 +29,9 @@ class ApiHandler
     }
 
     /**
+     * public function to access data response
+     *
      * @param string $city
-     *
-     *
      */
     public function getAllDataByCity($city)
     {
@@ -40,11 +42,12 @@ class ApiHandler
     }
 
     /**
+     * return all parking less than a selected distance as json, in this case I have hardcoded 3km but should be a variable to be specified by user
+     *
      * @param string $city used for this test, in real case I would have accessed the position or calculate lat and lon based on selected address
      * @param float $lat latitude coordinates
      * @param float $lon longitude coordinates
      *
-     * return all parking less than a selected distance, in this case I have hardcoded 3km but should be a variable to be specified by user
      */
     public function getClosestParking($city, $lat, $lon)
     {
@@ -61,12 +64,13 @@ class ApiHandler
 
 
     /**
+     * return parking with selected status as json
+     *
      * @param string $city used for this test, in real case I would have accessed the position or calculate lat and lon based on selected address
      * @param float $lat latitude coordinates
      * @param float $lon longitude coordinates
      * @param string $status chosen status to look for
      *
-     * return parking with selected status
      */
     public function getParkingByStatus($city, $lat, $lon, $status)
     {
@@ -84,6 +88,8 @@ class ApiHandler
     }
 
     /**
+     * calculate distance of all parking from a given position
+     *
      * @param float $lat1 latitude of the user
      * @param float $lon1 longitude of the user
      * @param float $lat2 latitude of the parking
